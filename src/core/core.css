@@ -1,0 +1,22 @@
+.Pokeball-logo {
+  /* height: 40vmin; */
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .Pokeball-logo {
+    animation: App-logo-float infinite 2s ease-in-out;
+  }
+}
+
+@keyframes Pokeball-logo-float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
