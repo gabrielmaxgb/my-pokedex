@@ -1,25 +1,8 @@
-import { Container } from '@mui/material';
 import React from 'react';
-// import logo from './logo.svg';
-// import { Counter } from './features/counter/Counter';
-import './App.css';
-// import Header from './components/Header/Header';
-// import Container from '@mui/material/Container'
-import { makeStyles } from '@mui/styles';
 import AppRoutes from './router/routes';
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: '#F5F6F6',
-    minHeight: '100vh',
-    // display: 'flex',
-    // justify: 'center'
-  }
-}))
+import './App.css';
 
 function App() {
-  const classes = useStyles();
-
   return (
       <AppRoutes />
     // <Container className={classes.root} maxWidth="false">

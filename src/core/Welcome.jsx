@@ -22,6 +22,7 @@ function Welcome() {
   const classes = useStyles();
   const theme = useTheme();
   const xs = useMediaQuery(theme.breakpoints.only('xs'));
+  const sm = useMediaQuery(theme.breakpoints.only('sm'));
 
   return (
     <Container
@@ -30,18 +31,18 @@ function Welcome() {
       component="div"
     >
       <Grid container alignItems="center" xs={12} style={{ minHeight: '100vh' }}>
-        <Grid item container justifyContent="center" xs={12} sm={6}>
+        <Grid item container justifyContent={xs || sm ? "center" : "flex-end"} xs={12} sm={6}>
           <Link to="/pokedex">
             <PokeballButton>
-              <img className={"Pokeball-logo"} alt="pokeball" src={Pokeball} style={{ width: xs ? '200px' : '500px' }} />
+              <img className={"Pokeball-logo"} alt="pokeball" src={Pokeball} style={{ width: xs || sm ? '200px' : '500px' }} />
             </PokeballButton>
           </Link>
         </Grid>
-        <Grid item container justifyContent={xs ? 'center' : 'flex-start'} xs={12} sm={6}>
+        <Grid item container justifyContent={xs || sm ? 'center' : 'flex-start'} xs={12} sm={6}>
           <Typography variant="h2" textAlign="center">
             Welcome to my Pokédex!
           </Typography>
-          <Typography variant="caption" style={{ marginLeft: '1rem' }}>
+          <Typography variant="caption" style={{ marginLeft: '1rem' }} textAlign="end">
             By Gabriel Max
           </Typography>
         </Grid>

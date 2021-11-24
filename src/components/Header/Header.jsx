@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Container,
   Grid,
@@ -8,6 +8,11 @@ import { makeStyles } from '@mui/styles';
 import { styled } from "@mui/material/styles";
 import SearchIcon from '@mui/icons-material/Search';
 import { SearchButton } from './headerStyles';
+import { connect } from 'react-redux';
+import {
+  // changeTestState as changeTestStateAction,
+  setSearchFilterValue as setSearchFilterValueAction
+} from '../../app/actions';
 
 const useStyles = makeStyles(theme => ({
   headerInputArea: {
@@ -27,24 +32,17 @@ const useStyles = makeStyles(theme => ({
 
 const CssTextField = styled(TextField)({
   "& label.Mui-focused": {
-    // color: "red"
     color: "#F5F6F6"
   },
   "& label": {
     color: "#F5F6F6"
   },
-  // "& .MuiInput-underline:after": {
-  //   borderBottomColor: "green"
-  // },
   "& .MuiInputBase-input": {
     color: '#F5F6F6'
   },
   "& .MuiOutlinedInput-root": {
     "& fieldset": {
-      // borderColor: "#8D8D8D"
       border: '3px solid #F5F6F6',
-      // backgroundColor: '#F5F6F6',
-      // color: 'gray'
     },
     "&:hover fieldset": {
       borderColor: "#F5F6F6"
@@ -55,8 +53,28 @@ const CssTextField = styled(TextField)({
   }
 });
 
-const Header = () => {
+const Header = (props) => {
+  const {
+    // changeTestState,
+    setSearchFilterValue,
+    appState
+  } = props;
+  const [filterValue, setFilterValue] = useState(undefined)
   const classes = useStyles();
+
+  const handleSearchClick = () => {
+    setSearchFilterValue(filterValue);
+    console.log(appState);
+  };
+
+  const handleKeyDown = (event) => {
+    const filter = event.target.value;
+    setFilterValue(filter);
+    if (event.key === 'Enter') {
+      console.log(filter);
+      setSearchFilterValue(filterValue);
+    }
+  }
 
   return (
     <>
@@ -73,8 +91,10 @@ const Header = () => {
             <CssTextField
               label="Name or Number"
               id="custom-css-outlined-input"
+              onChange={(event) => setFilterValue(event.target.value)}
+              onKeyDown={(event) => handleKeyDown(event)}
             />
-            <SearchButton>
+            <SearchButton onClick={() => handleSearchClick()}>
               <SearchIcon fontSize="large" sx={{ color: '#F5F6F6' }} />
             </SearchButton>
           </Grid>
@@ -84,4 +104,13 @@ const Header = () => {
   );
 }
 
-export default Header;
+const mapStateToProps = (state) => ({
+  appState: state.appReducer,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  // changeTestState: () => dispatch(changeTestStateAction()),
+  setSearchFilterValue: (filterParam) => dispatch(setSearchFilterValueAction(filterParam)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

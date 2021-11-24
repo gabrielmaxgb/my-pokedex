@@ -6,8 +6,10 @@ export const SearchButton = styled.button `
   border-radius: 8px;
   margin-left: 1rem;
   border: transparent;
+  transition: box-shadow 0.3s ease-in-out;
 
   :hover {
     cursor: pointer;
+    box-shadow: 10px -6px white;
   }
 `;

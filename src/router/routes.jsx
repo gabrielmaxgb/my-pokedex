@@ -10,7 +10,7 @@ import Welcome from '../core/Welcome';
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<Welcome />} />
+      <Route index path="/" element={<Welcome />} />
       <Route path="/pokedex" element={<Pokedex />} />
     </Routes>
   );
