@@ -12,9 +12,9 @@ const Spinner = styled(CircularProgress)({
 const Genericloading = (props) => {
   return (
     <Container maxWidth="xs">
-      <Grid container alignItems="center" justifyContent="center" xs={12} style={{ backgroundColor: '', minHeight: '75vh' }}>
+      <Grid container alignItems="center" justifyContent="center" xs={12} style={{ backgroundColor: 'inherit', minHeight: '75vh' }}>
         <Typography variant="button" margin="1rem">
-          Loading
+          Loading...
         </Typography>
         <Spinner thickness={2} />
       </Grid>

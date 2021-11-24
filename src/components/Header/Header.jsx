@@ -7,10 +7,9 @@ import {
 import { makeStyles } from '@mui/styles';
 import { styled } from "@mui/material/styles";
 import SearchIcon from '@mui/icons-material/Search';
-import { SearchButton } from './headerStyles';
+import { HeaderButton } from './headerStyles';
 import { connect } from 'react-redux';
 import {
-  // changeTestState as changeTestStateAction,
   setSearchFilterValue as setSearchFilterValueAction
 } from '../../app/actions';
 
@@ -55,26 +54,29 @@ const CssTextField = styled(TextField)({
 
 const Header = (props) => {
   const {
-    // changeTestState,
     setSearchFilterValue,
-    appState
+    // appState
   } = props;
   const [filterValue, setFilterValue] = useState(undefined)
   const classes = useStyles();
 
   const handleSearchClick = () => {
     setSearchFilterValue(filterValue);
-    console.log(appState);
   };
 
   const handleKeyDown = (event) => {
     const filter = event.target.value;
     setFilterValue(filter);
     if (event.key === 'Enter') {
-      console.log(filter);
       setSearchFilterValue(filterValue);
     }
   }
+
+  // const handleClearClick = () => {
+  //   setFilterValue(undefined);
+  //   setSearchFilterValue(filterValue);
+  //   console.log(appState)
+  // }
 
   return (
     <>
@@ -91,12 +93,22 @@ const Header = (props) => {
             <CssTextField
               label="Name or Number"
               id="custom-css-outlined-input"
+              value={filterValue}
               onChange={(event) => setFilterValue(event.target.value)}
               onKeyDown={(event) => handleKeyDown(event)}
             />
-            <SearchButton onClick={() => handleSearchClick()}>
+            <HeaderButton onClick={() => handleSearchClick()}>
               <SearchIcon fontSize="large" sx={{ color: '#F5F6F6' }} />
-            </SearchButton>
+            </HeaderButton>
+            {/* <HeaderButton onClick={() => handleSearchClick()}>
+              <Typography
+                variant="h5"
+                color="#F5F6F6"
+                onClick={() => handleClearClick()}
+              >
+                Clear search
+              </Typography>
+            </HeaderButton> */}
           </Grid>
         </Container>
       </Container>
@@ -109,7 +121,6 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  // changeTestState: () => dispatch(changeTestStateAction()),
   setSearchFilterValue: (filterParam) => dispatch(setSearchFilterValueAction(filterParam)),
 });
 

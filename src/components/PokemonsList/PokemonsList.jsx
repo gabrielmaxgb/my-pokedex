@@ -17,9 +17,8 @@ const Pokemonslist = (props) => {
   }, [])
 
   const renderAllPokemons = () => {
-    console.log(Array.from(appState.pokemonData.pokemon))
     const pokemonArray = Array.from(appState.pokemonData.pokemon);
-    return appState.filterValue === undefined ? (
+    return appState.filterValue === undefined || appState.filterValue === "" ? (
       pokemonArray.map((pokemonData) => <PokemonsCard pokemonData={pokemonData} />)
     ) : (
       pokemonArray
@@ -40,7 +39,12 @@ const Pokemonslist = (props) => {
         justifyContent="flex-start"
         xs={12}
         style={{
-          padding: '2rem 0',
+          margin: '2rem 0',
+          padding: '.5rem',
+          borderRadius: '8px',
+          backgroundColor: '#313131',
+          // backgroundColor: '#FFCB03',
+          // border: '6px solid #3269B3'
         }}
       >
         {appState.pokemonData !== undefined && renderAllPokemons()}

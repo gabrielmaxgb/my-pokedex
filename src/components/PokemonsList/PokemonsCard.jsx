@@ -2,8 +2,10 @@ import { Grid, Paper, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 import InfoTag from './InfoTag';
+import PokeballIcon from '../../images/pokeball.png';
+import { typeColors } from '../../app/config/consts';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((props) => ({
   root: {
     padding: '.5rem'
   },
@@ -14,7 +16,9 @@ const useStyles = makeStyles((theme) => ({
     "-moz-box-sizing": 'border-box',
     "box-sizing": 'border-box',
     objectFit: 'contain',
-    border: '10px solid black',
+    // borderRight: '6px solid #EE6B2F',
+    // border: '3px solid black',
+    border: (props) => `5px solid ${props.mainCardColor}`,
 
     "& :hover": {
       cursor: 'pointer',
@@ -29,7 +33,10 @@ const PokemonsCard = (props) => {
   const {
     pokemonData
   } = props;
-  const classes = useStyles();
+  const useStylesProps = {
+    mainCardColor: typeColors[pokemonData.type[0]],
+  };
+  const classes = useStyles(useStylesProps);
 
   // console.log(pokemonData);
 
@@ -56,9 +63,6 @@ const PokemonsCard = (props) => {
           // sm={6}
           >
             <img src={pokemonData.img} alt={pokemonData.name} className={classes.pokemonImage} />
-            {/* <Typography variant="overline" fontWeight={600}>
-              #{pokemonData.num}
-            </Typography> */}
           </Grid>
           <Grid item container justifyContent="center" xs={6} style={{ backgroundColor: '' }}>
             <Grid item container direction="column" alignItems="center" xs={12}>
@@ -68,12 +72,13 @@ const PokemonsCard = (props) => {
               <Typography variant="overline" fontWeight={600}>
                 #{pokemonData.num}
               </Typography>
+              <img src={PokeballIcon} alt="pokeball" width="20px" />
             </Grid>
             <Grid item container justifyContent="center" xs={12}>
             </Grid>
-            <Typography variant="h5">
+            {/* <Typography variant="h5">
               Type:
-            </Typography>
+            </Typography> */}
             <Grid item container justifyContent="center" xs={12}>
               {renderTypeChips()}
             </Grid>

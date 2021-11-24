@@ -21,7 +21,6 @@ export const getAllPokemonsData = () => {
     axios
       .get(POKEMON_BASE_API)
       .then((response) => {
-        // console.log(response.data)
         dispatch({
           type: GET_ALL_POKEMONS_DATA,
           payload: response.data,
@@ -36,14 +35,12 @@ export const getAllPokemonsData = () => {
           type: GET_ALL_POKEMONS_DATA,
           payload: false,
         });
-        console.log(e);
+        console.error(e);
       });
   };
 };
 
 export const setSearchFilterValue = (filterParam) => {
-  console.log('setSearchFilterValue')
-  console.log(filterParam);
   return dispatch => dispatch({
     type: SET_SEARCH_FILTER_VALUE,
     payload: filterParam,

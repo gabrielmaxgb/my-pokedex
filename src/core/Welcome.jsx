@@ -7,15 +7,28 @@ import { PokeballButton } from './coreStyles';
 import './core.css';
 import { useTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
+import clsx from 'clsx';
+// import ArrowCircleDownTwoToneIcon from '@mui/icons-material/ArrowCircleDownTwoTone';
 
 const useStyles = makeStyles(theme => ({
   root: {
     diplay: 'flex',
     alignItems: 'center',
 
-    backgroundColor: '#8D8D8D',
+    backgroundColor: '#F5F6F6',
     minHeight: '100vh'
   },
+  pokeballButton: {
+    "& hover": {
+      cursor: 'pointer',
+    }
+  },
+  welcomeText: {
+    "-webkit-text-stroke-width": '3px',
+    "-webkit-text-stroke-color": '#3269B3',
+    color: "#FFCB03",
+    fontWeight: '800',
+  }
 }));
 
 function Welcome() {
@@ -32,43 +45,38 @@ function Welcome() {
     >
       <Grid container alignItems="center" xs={12} style={{ minHeight: '100vh' }}>
         <Grid item container justifyContent={xs || sm ? "center" : "flex-end"} xs={12} sm={6}>
-          <Link to="/pokedex">
-            <PokeballButton>
-              <img className={"Pokeball-logo"} alt="pokeball" src={Pokeball} style={{ width: xs || sm ? '200px' : '500px' }} />
-            </PokeballButton>
-          </Link>
+          <Grid item xs={12} justifyContent={xs || sm ? "center" : "flex-end"}>
+            <Typography
+              className={classes.welcomeText}
+              variant={'h2'}
+              fontWeight={800}
+              textAlign={xs || sm ? "center" : "center"}
+            >
+              TRY IT
+            </Typography>
+          </Grid>
+          <Grid item xs={12} justifyContent={xs || sm ? "center" : "center"} textAlign={xs || sm ? "center" : "center"}  >
+            <Link to="/pokedex">
+              <PokeballButton>
+                <img className={clsx("Pokeball-logo", classes.pokeballButton)} alt="pokeball" src={Pokeball} style={{ width: xs || sm ? '270px' : '500px' }} />
+              </PokeballButton>
+            </Link>
+          </Grid>
         </Grid>
         <Grid item container justifyContent={xs || sm ? 'center' : 'flex-start'} xs={12} sm={6}>
-          <Typography variant="h2" textAlign="center">
+          <Typography
+            className={classes.welcomeText}
+            variant="h2"
+            textAlign="center"
+            fontWeight={800}
+          >
             Welcome to my Pokédex!
           </Typography>
-          <Typography variant="caption" style={{ marginLeft: '1rem' }} textAlign="end">
+          <Typography variant="caption" style={{ marginLeft: '1rem', color: 'black', fontWeight: 800 }} textAlign="end">
             By Gabriel Max
           </Typography>
         </Grid>
       </Grid>
-      {/* <Grid
-        container
-        // direction={xs ? 'column' : 'row'}
-        alignItems="center"
-        justifyContent="center"
-        xs={12}
-        style={{
-          minHeight: '100vh'
-        }}
-      >
-        <Link to="/pokedex">
-          <PokeballButton>
-            <img className={"Pokeball-logo"} alt="pokeball" src={Pokeball} style={{ width: xs ? '200px' : '500px' }} />
-          </PokeballButton>
-        </Link>
-        <Typography variant="h2">
-          Welcome to my Pokédex!
-        </Typography>
-        <Typography variant="caption" style={{ marginLeft: '1rem' }}>
-          By Gabriel Max
-        </Typography>
-      </Grid> */}
     </Container>
   )
 }
