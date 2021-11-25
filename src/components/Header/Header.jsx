@@ -55,13 +55,15 @@ const CssTextField = styled(TextField)({
 const Header = (props) => {
   const {
     setSearchFilterValue,
-    // appState
+    appState
   } = props;
   const [filterValue, setFilterValue] = useState(undefined)
   const classes = useStyles();
 
   const handleSearchClick = () => {
     setSearchFilterValue(filterValue);
+    console.log('searchbutton')
+    console.log(appState)
   };
 
   const handleKeyDown = (event) => {
@@ -70,13 +72,16 @@ const Header = (props) => {
     if (event.key === 'Enter') {
       setSearchFilterValue(filterValue);
     }
+    console.log('enter pressed')
+    console.log(appState)
   }
 
-  // const handleClearClick = () => {
-  //   setFilterValue(undefined);
-  //   setSearchFilterValue(filterValue);
-  //   console.log(appState)
-  // }
+  const handleClearClick = async () => {
+    setFilterValue('');
+    await setSearchFilterValue('');
+    console.log('cleared')
+    console.log(appState)
+  }
 
   return (
     <>
@@ -100,7 +105,7 @@ const Header = (props) => {
             <HeaderButton onClick={() => handleSearchClick()}>
               <SearchIcon fontSize="large" sx={{ color: '#F5F6F6' }} />
             </HeaderButton>
-            {/* <HeaderButton onClick={() => handleSearchClick()}>
+            <HeaderButton>
               <Typography
                 variant="h5"
                 color="#F5F6F6"
@@ -108,7 +113,7 @@ const Header = (props) => {
               >
                 Clear search
               </Typography>
-            </HeaderButton> */}
+            </HeaderButton>
           </Grid>
         </Container>
       </Container>

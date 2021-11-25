@@ -1,5 +1,4 @@
 import React from 'react';
-// import Shop from '../core/Shop';
 import {
   Routes,
   Route
@@ -10,7 +9,7 @@ import Welcome from '../core/Welcome';
 const AppRoutes = () => {
   return (
     <Routes>
-      <Route index path="/" element={<Welcome />} />
+      <Route path="/" element={<Welcome />} />
       <Route path="/pokedex" element={<Pokedex />} />
     </Routes>
   );

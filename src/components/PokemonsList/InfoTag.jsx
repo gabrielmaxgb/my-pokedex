@@ -18,6 +18,7 @@ const InfoChip = styled(Chip)((props) => {
   return ({
     "& .MuiChip-label": {
       color: typeColors[props.chipColor],
+      fontWeight: '600'
     }
   }
   );

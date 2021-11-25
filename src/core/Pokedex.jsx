@@ -1,7 +1,5 @@
 import React from 'react';
 import { makeStyles } from '@mui/styles';
-// import { connect } from 'react-redux';
-// import { getAllPokemonsData as getAllPokemonsDataAction } from '../app/actions';
 import Header from '../components/Header/Header'
 import Pokemonslist from '../components/PokemonsList/PokemonsList';
 
@@ -22,15 +20,5 @@ const Pokedex = (props) => {
     </div>
   );
 }
-
-// const mapStateToProps = (state) => ({
-//   appState: state.appReducer,
-// });
-
-// const mapDispatchToProps = (dispatch) => ({
-//   getAllPokemonsData: () => dispatch(getAllPokemonsDataAction()),
-// });
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Pokedex);
 
 export default Pokedex;

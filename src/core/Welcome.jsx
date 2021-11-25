@@ -1,21 +1,18 @@
 import React from 'react';
 import { Container, Grid, Typography, useMediaQuery } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-// import { minHeight } from '@mui/system';
 import Pokeball from '../images/Poké_Ball_icon.jpeg';
 import { PokeballButton } from './coreStyles';
 import './core.css';
 import { useTheme } from '@mui/material/styles';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
-// import ArrowCircleDownTwoToneIcon from '@mui/icons-material/ArrowCircleDownTwoTone';
 
 const useStyles = makeStyles(theme => ({
   root: {
     diplay: 'flex',
     alignItems: 'center',
-
-    backgroundColor: '#F5F6F6',
+    backgroundImage: 'linear-gradient(#3269B3, #F5F6F6)',
     minHeight: '100vh'
   },
   pokeballButton: {
@@ -48,17 +45,24 @@ function Welcome() {
           <Grid item xs={12} justifyContent={xs || sm ? "center" : "flex-end"}>
             <Typography
               className={classes.welcomeText}
-              variant={'h2'}
+              variant={'h3'}
               fontWeight={800}
               textAlign={xs || sm ? "center" : "center"}
             >
               TRY IT
             </Typography>
           </Grid>
-          <Grid item xs={12} justifyContent={xs || sm ? "center" : "center"} textAlign={xs || sm ? "center" : "center"}  >
+          <Grid item xs={12} justifyContent={xs || sm ? "center" : "center"} textAlign={xs || sm ? "center" : "center"}>
             <Link to="/pokedex">
               <PokeballButton>
-                <img className={clsx("Pokeball-logo", classes.pokeballButton)} alt="pokeball" src={Pokeball} style={{ width: xs || sm ? '270px' : '500px' }} />
+                <img
+                  className={clsx("Pokeball-logo", classes.pokeballButton)}
+                  alt="pokeball"
+                  src={Pokeball}
+                  style={{
+                    width: xs || sm ? '270px' : '500px'
+                  }}
+                />
               </PokeballButton>
             </Link>
           </Grid>

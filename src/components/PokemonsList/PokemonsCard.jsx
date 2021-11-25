@@ -16,13 +16,19 @@ const useStyles = makeStyles((props) => ({
     "-moz-box-sizing": 'border-box',
     "box-sizing": 'border-box',
     objectFit: 'contain',
-    // borderRight: '6px solid #EE6B2F',
-    // border: '3px solid black',
     border: (props) => `5px solid ${props.mainCardColor}`,
+    // backgroundImage: (props) => `linear-gradient(${props.mainCardColor}, #F5F6F6)`,
 
     "& :hover": {
       cursor: 'pointer',
     }
+  },
+  pokemonName: {
+    color: props => props.mainCardColor,
+    backgroundColor: 'inherit',
+    border: props => `3px solid ${props.mainCardColor}`,
+    padding: '.2rem',
+    borderRadius: '8px',
   },
   pokemonImage: {
     minWidth: '100%',
@@ -38,11 +44,9 @@ const PokemonsCard = (props) => {
   };
   const classes = useStyles(useStylesProps);
 
-  // console.log(pokemonData);
 
   const renderTypeChips = () => {
     const pokemonTypeArray = Array.from(pokemonData.type);
-    // console.log(pokemonTypeArray.map(type => <InfoTag typeArray={type} />));
     return pokemonTypeArray.map(type => <InfoTag typeArray={type} />);
   };
 
@@ -60,13 +64,12 @@ const PokemonsCard = (props) => {
             direction="column"
             alignItems="flex-start"
             xs={6}
-          // sm={6}
           >
             <img src={pokemonData.img} alt={pokemonData.name} className={classes.pokemonImage} />
           </Grid>
           <Grid item container justifyContent="center" xs={6} style={{ backgroundColor: '' }}>
             <Grid item container direction="column" alignItems="center" xs={12}>
-              <Typography variant="h5">
+              <Typography className={classes.pokemonName} variant="h5" fontWeight={600}>
                 {pokemonData.name}
               </Typography>
               <Typography variant="overline" fontWeight={600}>
@@ -76,9 +79,6 @@ const PokemonsCard = (props) => {
             </Grid>
             <Grid item container justifyContent="center" xs={12}>
             </Grid>
-            {/* <Typography variant="h5">
-              Type:
-            </Typography> */}
             <Grid item container justifyContent="center" xs={12}>
               {renderTypeChips()}
             </Grid>
