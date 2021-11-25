@@ -105,7 +105,7 @@ const Header = (props) => {
             <HeaderButton onClick={() => handleSearchClick()}>
               <SearchIcon fontSize="large" sx={{ color: '#F5F6F6' }} />
             </HeaderButton>
-            <HeaderButton>
+            <HeaderButton clearSearch>
               <Typography
                 variant="h5"
                 color="#F5F6F6"

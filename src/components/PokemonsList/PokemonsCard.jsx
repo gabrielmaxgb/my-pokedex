@@ -17,11 +17,10 @@ const useStyles = makeStyles((props) => ({
     "box-sizing": 'border-box',
     objectFit: 'contain',
     border: (props) => `5px solid ${props.mainCardColor}`,
-    // backgroundImage: (props) => `linear-gradient(${props.mainCardColor}, #F5F6F6)`,
 
     "& :hover": {
       cursor: 'pointer',
-    }
+    },
   },
   pokemonName: {
     color: props => props.mainCardColor,
