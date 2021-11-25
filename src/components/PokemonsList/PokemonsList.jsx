@@ -1,15 +1,19 @@
 import React, { useEffect } from 'react';
-import { Container, Grid } from '@mui/material';
+import { Container, Grid, Typography, useMediaQuery } from '@mui/material';
 import { connect } from 'react-redux';
 import { getAllPokemonsData as getAllPokemonsDataAction } from '../../app/actions';
 import Genericloading from '../loading/GenericLoading';
 import PokemonsCard from './PokemonsCard';
+import { useTheme } from '@mui/material/styles';
 
 const Pokemonslist = (props) => {
   const {
     getAllPokemonsData,
     appState,
   } = props;
+  const theme = useTheme();
+  const xs = useMediaQuery(theme.breakpoints.only('xs'));
+  const sm = useMediaQuery(theme.breakpoints.only('sm'));
 
   useEffect(() => {
     getAllPokemonsData();
@@ -33,6 +37,11 @@ const Pokemonslist = (props) => {
 
   return (
     <Container maxWidth="xl">
+      <Grid container alignItems="center" justifyContent="center" xs={12}>
+        <Typography variant={xs || sm ? 'h5' : 'h3'} fontWeight={650} marginTop="2rem" color="#8D8D8D">
+          Click on the pokemon you have already captured!
+        </Typography>
+      </Grid>
       <Grid
         container
         alignItems="center"

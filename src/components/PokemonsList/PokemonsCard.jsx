@@ -1,8 +1,9 @@
 import { Grid, Paper, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import React from 'react';
+import React, { useState } from 'react';
 import InfoTag from './InfoTag';
-import PokeballIcon from '../../images/pokeball.png';
+import PokeballIcon from '../../images/pokeball1.png';
+import FilledPokeballIcon from '../../images/filledPokeball.png';
 import { typeColors } from '../../app/config/consts';
 
 const useStyles = makeStyles((props) => ({
@@ -38,11 +39,12 @@ const PokemonsCard = (props) => {
   const {
     pokemonData
   } = props;
+  const [isCaptured, setCaptured] = useState(false);
+
   const useStylesProps = {
     mainCardColor: typeColors[pokemonData.type[0]],
   };
   const classes = useStyles(useStylesProps);
-
 
   const renderTypeChips = () => {
     const pokemonTypeArray = Array.from(pokemonData.type);
@@ -50,7 +52,18 @@ const PokemonsCard = (props) => {
   };
 
   return (
-    <Grid className={classes.root} item justifyContent="center" alignItems="center" container xs={12} sm={6} md={4} lg={3}>
+    <Grid
+      className={classes.root}
+      item
+      container
+      justifyContent="center"
+      alignItems="center"
+      xs={12}
+      sm={6}
+      md={4}
+      lg={3}
+      onClick={() => setCaptured(!isCaptured)}
+    >
       <Paper
         className={classes.paperCard}
         elevation={8}
@@ -64,7 +77,11 @@ const PokemonsCard = (props) => {
             alignItems="flex-start"
             xs={6}
           >
-            <img src={pokemonData.img} alt={pokemonData.name} className={classes.pokemonImage} />
+            <img
+              src={pokemonData.img}
+              alt={pokemonData.name}
+              className={classes.pokemonImage}
+            />
           </Grid>
           <Grid item container justifyContent="center" xs={6} style={{ backgroundColor: '' }}>
             <Grid item container direction="column" alignItems="center" xs={12}>
@@ -74,7 +91,14 @@ const PokemonsCard = (props) => {
               <Typography variant="overline" fontWeight={600}>
                 #{pokemonData.num}
               </Typography>
-              <img src={PokeballIcon} alt="pokeball" width="20px" />
+              <img
+                src={isCaptured ? FilledPokeballIcon : PokeballIcon}
+                alt="pokeball"
+                width="20px"
+                style={{
+                  color: 'red'
+                }}
+              />
             </Grid>
             <Grid item container justifyContent="center" xs={12}>
             </Grid>
