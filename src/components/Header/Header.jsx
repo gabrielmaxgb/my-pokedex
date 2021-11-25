@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import {
   Container,
+  Dialog,
+  DialogTitle,
   Grid,
   TextField, Typography
 } from '@mui/material';
@@ -55,15 +57,14 @@ const CssTextField = styled(TextField)({
 const Header = (props) => {
   const {
     setSearchFilterValue,
-    appState
+    // appState
   } = props;
-  const [filterValue, setFilterValue] = useState(undefined)
+  const [filterValue, setFilterValue] = useState(undefined);
+  const [isDialogVisible, setDialogVisibility] = useState(false);
   const classes = useStyles();
 
   const handleSearchClick = () => {
     setSearchFilterValue(filterValue);
-    console.log('searchbutton')
-    console.log(appState)
   };
 
   const handleKeyDown = (event) => {
@@ -72,16 +73,17 @@ const Header = (props) => {
     if (event.key === 'Enter') {
       setSearchFilterValue(filterValue);
     }
-    console.log('enter pressed')
-    console.log(appState)
   }
 
-  const handleClearClick = async () => {
-    setFilterValue('');
-    await setSearchFilterValue('');
-    console.log('cleared')
-    console.log(appState)
+  const handleClearClick = () => {
+    setDialogVisibility(true);
+    setFilterValue("")
+    setSearchFilterValue("");
   }
+
+  const handleDialogClose = () => {
+    setDialogVisibility(false);
+  };
 
   return (
     <>
@@ -117,16 +119,29 @@ const Header = (props) => {
           </Grid>
         </Container>
       </Container>
+
+      <Dialog onClose={() => handleDialogClose()} open={isDialogVisible}>
+      <DialogTitle>
+        <Typography variant="h6" fontWeight={700}>
+          Filter cleared!
+        </Typography>
+      </DialogTitle>
+      <HeaderButton onClick={() => handleDialogClose()}>
+        <Typography variant="h6" fontWeight={600}>
+          Ok
+        </Typography>
+      </HeaderButton>
+    </Dialog>
     </>
   );
 }
 
-const mapStateToProps = (state) => ({
-  appState: state.appReducer,
-});
+// const mapStateToProps = (state) => ({
+//   appState: state.appReducer,
+// });
 
 const mapDispatchToProps = (dispatch) => ({
   setSearchFilterValue: (filterParam) => dispatch(setSearchFilterValueAction(filterParam)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(null, mapDispatchToProps)(Header);
