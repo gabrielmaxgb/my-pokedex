@@ -1,6 +1,10 @@
-import { Grid, Paper, Typography } from '@mui/material';
-import { makeStyles } from '@mui/styles';
 import React, { useState } from 'react';
+import {
+  Grid,
+  Paper,
+  Typography,
+} from '@mui/material';
+import { makeStyles } from '@mui/styles';
 import InfoTag from './InfoTag';
 import PokeballIcon from '../../images/pokeball1.png';
 import FilledPokeballIcon from '../../images/filledPokeball.png';
@@ -94,10 +98,7 @@ const PokemonsCard = (props) => {
               <img
                 src={isCaptured ? FilledPokeballIcon : PokeballIcon}
                 alt="pokeball"
-                width="20px"
-                style={{
-                  color: 'red'
-                }}
+                width="25px"
               />
             </Grid>
             <Grid item container justifyContent="center" xs={12}>
